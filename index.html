@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>refillCBD — Refill your CBD</title>
+<meta name="description" content="refillCBD: a simple shortcut to refill trusted, lab-tested CBD products.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+<style>
+  :root { --green:#1f7a4d; --ink:#1b1b1b; --soft:#6b6b6b; --bg:#ffffff; --line:#e8efe9; }
+  * { box-sizing:border-box; margin:0; padding:0; font-weight:300 !important; }
+  body { font-family:Inter, system-ui, sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width:520px; margin:0 auto; padding:24px 16px 40px; text-align:center; }
+  .logo { width:240px; max-width:75%; margin:32px auto 36px; display:block; }
+  h1 { font-size:34px; line-height:1.15; margin:0 0 10px; letter-spacing:-.5px; }
+  h1 span { color:var(--green); }
+  .sub { color:var(--soft); font-size:17px; margin-bottom:22px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:28px; }
+  .chip { background:var(--line); color:var(--green); border-radius:999px; padding:8px 14px; font-size:14px; }
+  .btn { display:inline-block; background:var(--green); color:#fff; text-decoration:none;
+         border-radius:999px; padding:16px 34px; font-size:18px;
+         box-shadow:0 6px 18px rgba(31,122,77,.28); animation:pump 3s ease-in-out infinite; }
+  @keyframes pump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+  .note { color:var(--soft); font-size:13px; margin-top:14px; }
+  footer { max-width:520px; margin:0 auto; padding:20px 16px 32px; border-top:1px solid var(--line);
+           color:var(--soft); font-size:11.5px; line-height:1.6; text-align:center; }
+  footer p + p { margin-top:8px; }
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="logo.png" alt="refillCBD">
+  <h1>Running low?<br><span>Refill your CBD.</span></h1>
+  <p class="sub">One tap to a trusted, lab-tested brand.</p>
+  <div class="chips">
+    <span class="chip">Lab-tested</span>
+    <span class="chip">Organic hemp</span>
+    <span class="chip">Ships in the U.S.</span>
+  </div>
+  <!-- Replace href with the Awin CBDfx tracking link after approval -->
+  <a class="btn" href="https://cbdfx.com/" rel="sponsored noopener" target="_blank">Shop CBDfx</a>
+  <p class="note">Adults 21+ only.</p>
+</main>
+<footer>
+  <p>Affiliate disclosure: refillCBD may earn a commission when you buy through links on this site, at no extra cost to you.</p>
+  <p>These statements have not been evaluated by the Food and Drug Administration. Products are not intended to diagnose, treat, cure, or prevent any disease. Talk to your doctor before use, especially if pregnant, nursing, or taking medication.</p>
+  <p>© 2026 refillCBD</p>
+</footer>
+</body>
+</html>
