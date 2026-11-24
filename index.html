@@ -23,6 +23,14 @@
          border-radius:999px; padding:16px 34px; font-size:18px;
          box-shadow:0 6px 18px rgba(31,122,77,.28); animation:pump 3s ease-in-out infinite; }
   @keyframes pump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+  .deal { background:#cfe3ea; border-radius:24px; padding:22px 18px 24px; margin:0 0 30px; }
+  .deal .tag { display:inline-block; background:#d9ef5a; color:#123a35; border-radius:999px; padding:6px 12px; font-size:12px; margin-bottom:12px; }
+  .deal h2 { font-size:28px; line-height:1.15; color:#123a35; margin-bottom:6px; }
+  .deal p { color:#2d4d48; font-size:15px; margin-bottom:16px; }
+  .deal .code { background:#fff; border-radius:999px; padding:4px 10px; }
+  .deal .btn { background:#123a35; box-shadow:0 6px 18px rgba(18,58,53,.3); }
+  .deal small { display:block; color:#4f6b66; font-size:11.5px; margin-top:12px; }
+  .or { color:var(--soft); font-size:13px; margin:0 0 14px; }
   .note { color:var(--soft); font-size:13px; margin-top:14px; }
   footer { max-width:520px; margin:0 auto; padding:20px 16px 32px; border-top:1px solid var(--line);
            color:var(--soft); font-size:11.5px; line-height:1.6; text-align:center; }
@@ -39,6 +47,15 @@
     <span class="chip">Organic hemp</span>
     <span class="chip">Ships in the U.S.</span>
   </div>
+  <section class="deal" id="bf-deal">
+    <span class="tag">Black Friday · ends Nov 29</span>
+    <h2>Charlotte’s Web<br>Buy One, Get One<br><span style="white-space:nowrap">50% Off</span></h2>
+    <p>Sitewide. Code <span class="code">BOGO50</span> applies in cart.</p>
+    <!-- Replace href with the Charlotte's Web affiliate tracking link after approval -->
+    <a class="btn" href="https://www.charlottesweb.com/" rel="sponsored noopener" target="_blank">Shop the BOGO</a>
+    <small>One-time purchases only, not subscriptions. Item of equal or lesser value 50% off, up to 10 items. Ends Nov 29, 2026, 11:59 PM MT.</small>
+  </section>
+  <p class="or" id="bf-or">or</p>
   <!-- Replace href with the Awin CBDfx tracking link after approval -->
   <a class="btn" href="https://cbdfx.com/" rel="sponsored noopener" target="_blank">Shop CBDfx</a>
   <p class="note">Adults 21+ only.</p>
@@ -48,5 +65,11 @@
   <p>These statements have not been evaluated by the Food and Drug Administration. Products are not intended to diagnose, treat, cure, or prevent any disease. Talk to your doctor before use, especially if pregnant, nursing, or taking medication.</p>
   <p>© 2026 refillCBD</p>
 </footer>
+<script>
+  // Hide the Black Friday card after Nov 29, 2026 11:59 PM MT (= Nov 30 06:59 UTC)
+  if (Date.now() > Date.UTC(2026,10,30,6,59,59)) {
+    ['bf-deal','bf-or'].forEach(function(id){ var e=document.getElementById(id); if(e) e.remove(); });
+  }
+</script>
 </body>
 </html>
