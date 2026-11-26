@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!-- refill loop -->
+  <path d="M168 100a68 68 0 0 1-116 48" opacity=".45"/>
+  <path d="M32 100A68 68 0 0 1 148 52" opacity=".45"/>
+  <path d="M140 42l9 10-12 5" opacity=".45"/>
+  <path d="M60 158l-9-10 12-5" opacity=".45"/>
+  <!-- falling drop -->
+  <path d="M100 36c-6 9-10 14-10 19a10 10 0 0 0 20 0c0-5-4-10-10-19z" fill="#1f7a4d" fill-opacity=".15"/>
+  <!-- bottle -->
+  <path d="M88 76h24v10l8 10v54a8 8 0 0 1-8 8H88a8 8 0 0 1-8-8V96l8-10z"/>
+  <!-- liquid level -->
+  <path d="M80 122c7-4 13 4 20 0s13-4 20 0v28a8 8 0 0 1-8 8H88a8 8 0 0 1-8-8z" fill="#1f7a4d" fill-opacity=".15" stroke="none"/>
+  <path d="M80 122c7-4 13 4 20 0s13-4 20 0"/>
+</svg>
