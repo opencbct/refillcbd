@@ -24,6 +24,24 @@
          border-radius:999px; padding:16px 34px; font-size:18px;
          box-shadow:0 6px 18px rgba(31,122,77,.25); animation:pump 3s ease-in-out infinite; }
   @keyframes pump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+  .sheet { position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; padding:16px; z-index:10; }
+  .sheet[hidden] { display:none; }
+  .card { position:relative; background:#fff; border-radius:22px; padding:28px 20px 22px; width:100%; max-width:400px;
+          display:flex; flex-direction:column; align-items:center; gap:10px; box-shadow:0 20px 50px rgba(0,0,0,.2); }
+  .ttl { font-size:20px; margin-bottom:6px; }
+  .x { position:absolute; top:10px; right:14px; border:0; background:none; font-size:26px; color:var(--soft); cursor:pointer; }
+  .chip { font:inherit; font-size:15px; color:var(--accent); background:#fff; border:1px solid #cfe3d6;
+          border-radius:999px; padding:11px 20px; cursor:pointer; max-width:100%; }
+  .chip.hot { border:2px solid var(--accent); }
+  .badge { display:inline-block; background:var(--accent); color:#fff; font-size:11px; letter-spacing:1.5px;
+           border-radius:999px; padding:3px 10px; margin-bottom:6px; }
+  .chip:hover { background:#f1f8f3; }
+  .to { margin-top:4px; color:var(--soft); font-size:13px; }
+  .to b { color:var(--ink); }
+  .toast { margin-top:4px; transform:translateY(8px); background:#1b1b1b; color:#fff;
+           padding:12px 24px; border-radius:999px; font-size:15px; opacity:0; pointer-events:none;
+           transition:opacity .25s, transform .25s; }
+  .toast.show { opacity:1; transform:none; }
   footer { padding:18px 16px 28px; border-top:1px solid var(--line); color:var(--soft);
            font-size:12px; line-height:1.6; text-align:center; }
   @media (min-width:768px) { .domain { font-size:56px; } }
@@ -37,10 +55,34 @@
   <p class="tag">This domain is for sale.</p>
   <a class="btn" id="offer" href="mailto:info@opencbct.com?subject=refillcbd.com%20domain%20inquiry">Make an offer</a>
 </main>
+  <div class="sheet" id="quick" hidden><div class="card" role="dialog" aria-label="Make an offer">
+    <button class="x" type="button" aria-label="Close">&times;</button>
+    <p class="ttl">Make an offer</p>
+    <button class="chip hot" type="button"><span class="badge">GLOBAL PLATFORM</span><br>I'll buy refillcbd.com for $300,000<br>w/ global platform web &amp; app development.</button>
+    <button class="chip" type="button">I'll buy refillcbd.com for $100,000<br>w/ just the domain.</button>
+    <button class="chip" type="button">I'd like to offer $____ for refillcbd.com.</button>
+    <p class="to">Tap one to copy it, then send to <b>info@opencbct.com</b></p>
+    <div class="toast" id="toast" role="status">Copied</div>
+  </div></div>
 <script>
-  document.getElementById('offer').addEventListener('click', function () {
-    try { navigator.clipboard.writeText('info@opencbct.com'); } catch (e) {}
-    this.textContent = 'info@opencbct.com (copied)';
+  var MAIL = 'info@opencbct.com', toast = document.getElementById('toast');
+  function copied(text) {
+    try { navigator.clipboard.writeText(text); } catch (e) {}
+    toast.classList.add('show');
+    clearTimeout(toast._h); toast._h = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+  document.getElementById('offer').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('quick').hidden = false;
+  });
+  var sheet = document.getElementById('quick');
+  sheet.addEventListener('click', function (e) { if (e.target === sheet || e.target.className === 'x') sheet.hidden = true; });
+  document.querySelectorAll('.chip').forEach(function (c) {
+    c.addEventListener('click', function () {
+      var msg = c.innerText.replace("GLOBAL PLATFORM", "").replace(/\s+/g, " ").trim();
+      copied(msg);
+      location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('refillcbd.com domain inquiry') + '&body=' + encodeURIComponent(msg);
+    });
   });
 </script>
 <footer>
