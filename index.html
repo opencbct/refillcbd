@@ -30,18 +30,41 @@
           display:flex; flex-direction:column; align-items:center; gap:10px; box-shadow:0 20px 50px rgba(0,0,0,.2); }
   .ttl { font-size:20px; margin-bottom:6px; }
   .x { position:absolute; top:10px; right:14px; border:0; background:none; font-size:26px; color:var(--soft); cursor:pointer; }
-  .chip { font:inherit; font-size:15px; color:var(--accent); background:#fff; border:1px solid #cfe3d6;
-          border-radius:999px; padding:11px 20px; cursor:pointer; max-width:100%; }
-  .chip.hot { border:2px solid var(--accent); }
+  .chip { font:inherit; font-size:15px; line-height:1.45; color:var(--accent); background:#fff; border:2px solid #cfe3d6;
+          border-radius:22px; padding:12px 18px; cursor:pointer; width:100%; min-height:124px;
+          display:flex; align-items:center; justify-content:center;
+          text-align:center;
+          transition:background .2s, color .2s, transform .2s, box-shadow .2s, border-color .2s; }
+  .chip.hot { border-color:var(--accent); }
+  .chip { gap:12px; }
+  .chip .ct { flex:1; }
+  .chip .bt { width:45px; height:90px; flex:none; order:-1; }
+  .chip.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .chip.on .btc { color:#e3f1e8; }
+  .chip.on .badge { background:#fff; color:var(--accent); }
+  .send { width:100%; text-align:center; }
+  .via { display:flex; gap:8px; justify-content:center; margin-top:8px; }
+  .via a { flex:1; text-decoration:none; background:var(--accent); color:#fff; border-radius:999px; padding:11px 0; font-size:15px; }
+  .via a:hover { filter:brightness(1.12); }
   .badge { display:inline-block; background:var(--accent); color:#fff; font-size:11px; letter-spacing:1.5px;
            border-radius:999px; padding:3px 10px; margin-bottom:6px; }
-  .chip:hover { background:#f1f8f3; }
+  .btc { color:var(--soft); white-space:nowrap; }
+  .btc:empty { display:none; }
+  .rate { color:var(--soft); font-size:12px; }
+  .card { max-height:92vh; overflow-y:auto; }
+  .how { margin-top:10px; padding-top:14px; border-top:1px solid var(--line); text-align:left; width:100%; }
+  .how-t { font-size:15px; margin-bottom:8px; text-align:center; }
+  .how ol { padding-left:20px; font-size:13px; line-height:1.55; color:var(--soft); }
+  .how li { margin-bottom:4px; }
+  .how b { color:var(--ink); }
+  .how a { color:var(--accent); }
+  .how-n { margin-top:8px; font-size:12px; color:var(--soft); }
+  .chip:hover, .chip:focus-visible { background:var(--accent); color:#fff; border-color:var(--accent);
+          transform:translateY(-2px); box-shadow:0 8px 20px rgba(31,122,77,.25); outline:none; }
+  .chip:hover .btc, .chip:focus-visible .btc { color:#e3f1e8; }
+  .chip:hover .badge, .chip:focus-visible .badge { background:#fff; color:var(--accent); }
   .to { margin-top:4px; color:var(--soft); font-size:13px; }
   .to b { color:var(--ink); }
-  .toast { margin-top:4px; transform:translateY(8px); background:#1b1b1b; color:#fff;
-           padding:12px 24px; border-radius:999px; font-size:15px; opacity:0; pointer-events:none;
-           transition:opacity .25s, transform .25s; }
-  .toast.show { opacity:1; transform:none; }
   footer { padding:18px 16px 28px; border-top:1px solid var(--line); color:var(--soft);
            font-size:12px; line-height:1.6; text-align:center; }
   @media (min-width:768px) { .domain { font-size:56px; } }
@@ -58,19 +81,33 @@
   <div class="sheet" id="quick" hidden><div class="card" role="dialog" aria-label="Make an offer">
     <button class="x" type="button" aria-label="Close">&times;</button>
     <p class="ttl">Make an offer</p>
-    <button class="chip hot" type="button"><span class="badge">GLOBAL PLATFORM</span><br>I'll buy refillcbd.com for $300,000<br>w/ global platform web &amp; app development.</button>
-    <button class="chip" type="button">I'll buy refillcbd.com for $100,000<br>w/ just the domain.</button>
-    <button class="chip" type="button">I'd like to offer $____ for refillcbd.com.</button>
-    <p class="to">Tap one to copy it, then send to <b>info@opencbct.com</b></p>
-    <div class="toast" id="toast" role="status">Copied</div>
+    <button class="chip hot" type="button"><span class="ct"><span class="badge">GLOBAL PLATFORM</span><br>I'll buy refillcbd.com for<br>$300,000 <span class="btc" data-usd="300000"></span><br>w/ global platform web &amp; app development.</span><img class="bt" src="bottle.svg" alt="" width="45" height="90"></button>
+    <button class="chip" type="button"><span class="ct">I'll buy refillcbd.com for<br>$100,000 <span class="btc" data-usd="100000"></span><br>w/ just the domain.</span><img class="bt" src="bottle.svg" alt="" width="45" height="90"></button>
+    <button class="chip" type="button"><span class="ct">I'd like to offer $____ for refillcbd.com.</span><img class="bt" src="bottle.svg" alt="" width="45" height="90"></button>
+    <p class="rate" id="rate" hidden></p>
+    <div class="send" id="send" hidden>
+      <p class="to">Send it to <b>info@opencbct.com</b> with</p>
+      <div class="via">
+        <a id="viaGmail" target="_blank" rel="noopener">Gmail</a>
+        <a id="viaOutlook" target="_blank" rel="noopener">Outlook</a>
+        <a id="viaMail">Mail app</a>
+      </div>
+    </div>
+    <p class="to" id="pick">Pick one to send</p>
+    <div class="how">
+      <p class="how-t">How it works</p>
+      <ol>
+        <li><b>Send your offer</b> by e-mail.</li>
+        <li><b>We agree</b> on the price and terms in writing.</li>
+        <li><b>Pay safely through <a href="https://www.escrow.com" target="_blank" rel="noopener">Escrow.com</a></b>, a licensed escrow service. Your money is held there, not sent to us.</li>
+        <li><b>We transfer refillcbd.com</b> to your registrar account.</li>
+        <li><b>You confirm</b> you own the domain, then the escrow releases payment.</li>
+      </ol>
+      <p class="how-n">Platform package: build work starts after a signed agreement, paid by milestones through escrow.</p>
+    </div>
   </div></div>
 <script>
-  var MAIL = 'info@opencbct.com', toast = document.getElementById('toast');
-  function copied(text) {
-    try { navigator.clipboard.writeText(text); } catch (e) {}
-    toast.classList.add('show');
-    clearTimeout(toast._h); toast._h = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
-  }
+  var MAIL = 'info@opencbct.com', SUBJ = 'refillcbd.com domain inquiry';
   document.getElementById('offer').addEventListener('click', function (e) {
     e.preventDefault();
     document.getElementById('quick').hidden = false;
@@ -80,10 +117,29 @@
   document.querySelectorAll('.chip').forEach(function (c) {
     c.addEventListener('click', function () {
       var msg = c.innerText.replace("GLOBAL PLATFORM", "").replace(/\s+/g, " ").trim();
-      copied(msg);
-      location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('refillcbd.com domain inquiry') + '&body=' + encodeURIComponent(msg);
+      var su = encodeURIComponent(SUBJ), bo = encodeURIComponent(msg);
+      document.querySelectorAll('.chip').forEach(function (x) { x.classList.toggle('on', x === c); });
+      document.getElementById('viaGmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + MAIL + '&su=' + su + '&body=' + bo;
+      document.getElementById('viaOutlook').href = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + MAIL + '&subject=' + su + '&body=' + bo;
+      document.getElementById('viaMail').href = 'mailto:' + MAIL + '?subject=' + su + '&body=' + bo;
+      document.getElementById('pick').hidden = true;
+      var sd = document.getElementById('send'); sd.hidden = false;
+      sd.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   });
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_last_updated_at=true')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var px = d && d.bitcoin && d.bitcoin.usd; if (!px) return;
+      document.querySelectorAll('.btc').forEach(function (el) {
+        el.textContent = '(≈ ' + (el.dataset.usd / px).toFixed(2) + ' BTC)';
+      });
+      var at = new Date((d.bitcoin.last_updated_at || Date.now() / 1000) * 1000);
+      var rate = document.getElementById('rate');
+      rate.textContent = '1 BTC = $' + Math.round(px).toLocaleString('en-US') + ' · updated ' +
+        at.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      rate.hidden = false;
+    }).catch(function () {});
 </script>
 <footer>
   <p>Domain name only. No products are sold or offered on this site.</p>
