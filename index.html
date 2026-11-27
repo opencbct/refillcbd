@@ -16,7 +16,7 @@
          display:flex; flex-direction:column; }
   main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
          text-align:center; padding:40px 16px; }
-  .logo { width:172px; height:auto; margin-bottom:8px; }
+  .logo { width:220px; height:auto; margin-bottom:8px; }
   .art { width:200px; height:200px; margin-bottom:12px; }
   .domain { font-size:40px; letter-spacing:-.5px; word-break:break-all; }
   .tag { margin-top:10px; color:var(--soft); font-size:18px; }
@@ -24,9 +24,6 @@
          border-radius:999px; padding:16px 34px; font-size:18px;
          box-shadow:0 6px 18px rgba(31,122,77,.25); animation:pump 3s ease-in-out infinite; }
   @keyframes pump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-  .mail { margin-top:18px; color:var(--soft); font-size:15px; }
-  .mail a { color:var(--accent); }
-  .copied { margin-top:6px; color:var(--accent); font-size:13px; }
   footer { padding:18px 16px 28px; border-top:1px solid var(--line); color:var(--soft);
            font-size:12px; line-height:1.6; text-align:center; }
   @media (min-width:768px) { .domain { font-size:56px; } }
@@ -34,18 +31,16 @@
 </head>
 <body>
 <main>
-  <img class="logo" src="logo.png" alt="refillCBD" width="172" height="126">
+  <img class="logo" src="logo.svg" alt="refillCBD" width="220" height="155">
   <video class="art" src="refill.mp4" poster="refill-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
   <h1 class="domain">refillcbd.com</h1>
   <p class="tag">This domain is for sale.</p>
   <a class="btn" id="offer" href="mailto:info@opencbct.com?subject=refillcbd.com%20domain%20inquiry">Make an offer</a>
-  <p class="mail">Send your offer to <a href="mailto:info@opencbct.com?subject=refillcbd.com%20domain%20inquiry">info@opencbct.com</a></p>
-  <p class="copied" id="copied" hidden>Email address copied.</p>
 </main>
 <script>
   document.getElementById('offer').addEventListener('click', function () {
     try { navigator.clipboard.writeText('info@opencbct.com'); } catch (e) {}
-    document.getElementById('copied').hidden = false;
+    this.textContent = 'info@opencbct.com (copied)';
   });
 </script>
 <footer>
