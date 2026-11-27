@@ -39,12 +39,12 @@
   .chip { gap:12px; }
   .chip .ct { flex:1; }
   .chip { position:relative; overflow:visible; flex-shrink:0; min-height:132px !important; font-size:14px !important; line-height:1.38 !important; padding:8px 14px !important; }
-  .chip .bt { width:48px; height:176px; flex:none; order:-1; align-self:flex-end; margin:-60px 10px -6px 12px; position:relative; z-index:1;
+  .chip .bt { width:71px; height:176px; flex:none; order:-1; align-self:flex-end; margin:-60px 10px -6px 12px; position:relative; z-index:1;
               transition:transform .25s; }
   .chip:hover .bt { animation:hop .55s cubic-bezier(.3,.7,.4,1); }
   @keyframes hop { 0%{transform:translateY(0)} 40%{transform:translateY(-14px)} 70%{transform:translateY(0)} 85%{transform:translateY(-3px)} 100%{transform:translateY(0)} }
   .chip + .chip { margin-top:46px; }
-  @media (max-width:420px) { .chip { font-size:13px !important; } .chip .bt { width:41px; height:152px; margin:-44px 6px -6px 4px; } }
+  @media (max-width:420px) { .chip { font-size:13px !important; } .chip .bt { width:62px; height:152px; margin:-44px 6px -6px 4px; } }
   .chip.on { background:var(--accent); color:#fff; border-color:var(--accent); }
   .chip.on .btc { color:#e3f1e8; }
   .chip.on .badge { background:#fff; color:var(--accent); }
@@ -92,9 +92,9 @@
   <div class="sheet" id="quick" hidden><div class="card" role="dialog" aria-label="Make an offer">
     <button class="x" type="button" aria-label="Close">&times;</button>
     <p class="ttl">Make an offer</p>
-    <button class="chip hot" type="button"><span class="ct"><span class="badge">GLOBAL PLATFORM</span><br>I'll buy refillcbd.com for<br>$300,000 <span class="btc" data-usd="300000"></span><br>w/ domain, logo &amp; global platform<br>web &amp; app development.</span><img class="bt" src="bottle_real.webp?v=8" alt="" width="48" height="176"></button>
-    <button class="chip" type="button"><span class="ct">I'll buy refillcbd.com for<br>$100,000 <span class="btc" data-usd="100000"></span><br>w/ the domain &amp; logo.</span><img class="bt" src="bottle_real.webp?v=8" alt="" width="48" height="176"></button>
-    <button class="chip" type="button"><span class="ct">I'd like to offer $____ for refillcbd.com<br>and its logo.</span><img class="bt" src="bottle_real.webp?v=8" alt="" width="48" height="176"></button>
+    <button class="chip hot" type="button"><span class="ct"><span class="badge">GLOBAL PLATFORM</span><br>I'll buy refillcbd.com for<br>$300,000 <span class="btc" data-usd="300000"></span><br>w/ domain, logo &amp; global platform<br>web &amp; app development.</span><img class="bt" src="bottle_amber.svg?v=4" alt="" width="71" height="176"></button>
+    <button class="chip" type="button"><span class="ct">I'll buy refillcbd.com for<br>$100,000 <span class="btc" data-usd="100000"></span><br>w/ the domain &amp; logo.</span><img class="bt" src="bottle_amber.svg?v=4" alt="" width="71" height="176"></button>
+    <button class="chip" type="button"><span class="ct">I'd like to offer $____ for refillcbd.com<br>and its logo.</span><img class="bt" src="bottle_amber.svg?v=4" alt="" width="71" height="176"></button>
     <p class="rate" id="rate" hidden></p>
     <div class="send" id="send" hidden>
       <p class="to">Send it to <b>orders@opencbct.com</b> with</p>
