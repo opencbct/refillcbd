@@ -28,7 +28,7 @@
   .sheet[hidden] { display:none; }
   .card { position:relative; background:#fff; border-radius:22px; padding:28px 20px 22px; width:100%; max-width:400px;
           display:flex; flex-direction:column; align-items:center; gap:10px; box-shadow:0 20px 50px rgba(0,0,0,.2); }
-  .ttl { font-size:20px; margin-bottom:6px; }
+  .ttl { font-size:20px; margin-bottom:40px; }
   .x { position:absolute; top:10px; right:14px; border:0; background:none; font-size:26px; color:var(--soft); cursor:pointer; }
   .chip { font:inherit; font-size:15px; line-height:1.45; color:var(--accent); background:#fff; border:2px solid #cfe3d6;
           border-radius:22px; padding:12px 18px; cursor:pointer; width:100%; min-height:124px;
@@ -38,20 +38,30 @@
   .chip.hot { border-color:var(--accent); }
   .chip { gap:12px; }
   .chip .ct { flex:1; }
-  .chip .bt { width:45px; height:90px; flex:none; order:-1; }
+  .chip { position:relative; overflow:visible; flex-shrink:0; min-height:132px !important; font-size:14px !important; line-height:1.38 !important; padding:8px 14px !important; }
+  .chip .bt { width:48px; height:176px; flex:none; order:-1; align-self:flex-end; margin:-60px 10px -6px 12px; position:relative; z-index:1;
+              transition:transform .25s; }
+  .chip:hover .bt { animation:hop .55s cubic-bezier(.3,.7,.4,1); }
+  @keyframes hop { 0%{transform:translateY(0)} 40%{transform:translateY(-14px)} 70%{transform:translateY(0)} 85%{transform:translateY(-3px)} 100%{transform:translateY(0)} }
+  .chip + .chip { margin-top:46px; }
+  @media (max-width:420px) { .chip { font-size:13px !important; } .chip .bt { width:41px; height:152px; margin:-44px 6px -6px 4px; } }
   .chip.on { background:var(--accent); color:#fff; border-color:var(--accent); }
   .chip.on .btc { color:#e3f1e8; }
   .chip.on .badge { background:#fff; color:var(--accent); }
   .send { width:100%; text-align:center; }
   .via { display:flex; gap:8px; justify-content:center; margin-top:8px; }
-  .via a { flex:1; text-decoration:none; background:var(--accent); color:#fff; border-radius:999px; padding:11px 0; font-size:15px; }
+  .via a { flex:1; text-decoration:none; background:var(--accent); color:#fff; border-radius:999px; padding:7px 10px 7px 7px; font-size:14px;
+           display:flex; align-items:center; justify-content:center; gap:7px; white-space:nowrap; }
+  .via .icw { width:28px; height:28px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; flex:none; }
+  .via .ic { width:18px; height:18px; }
+  @media (max-width:420px) { .via { gap:5px; } .via a { font-size:13px; gap:5px; padding:6px 8px 6px 6px; } .via .icw { width:24px; height:24px; } .via .ic { width:16px; height:16px; } }
   .via a:hover { filter:brightness(1.12); }
   .badge { display:inline-block; background:var(--accent); color:#fff; font-size:11px; letter-spacing:1.5px;
            border-radius:999px; padding:3px 10px; margin-bottom:6px; }
   .btc { color:var(--soft); white-space:nowrap; }
   .btc:empty { display:none; }
-  .rate { color:var(--soft); font-size:12px; }
-  .card { max-height:92vh; overflow-y:auto; }
+  .rate { color:var(--soft); font-size:12px; margin-top:8px; }
+  .card { max-height:92vh; overflow-y:auto; padding-top:44px; }
   .how { margin-top:10px; padding-top:14px; border-top:1px solid var(--line); text-align:left; width:100%; }
   .how-t { font-size:13px; margin-bottom:6px; text-align:center; color:var(--soft); }
   .how ol { padding-left:18px; font-size:11.5px; line-height:1.55; color:#8a8a8a; }
@@ -77,21 +87,21 @@
   <video class="art" src="bottle.mp4" poster="bottle-poster.jpg" width="600" height="700" autoplay muted loop playsinline aria-hidden="true"></video>
   <h1 class="domain">refillcbd.com</h1>
   <p class="tag">This domain and logo are for sale.</p>
-  <a class="btn" id="offer" href="mailto:info@opencbct.com?subject=refillcbd.com%20domain%20inquiry">Make an offer</a>
+  <a class="btn" id="offer" href="mailto:orders@opencbct.com?subject=refillcbd.com%20domain%20inquiry">Make an offer</a>
 </main>
   <div class="sheet" id="quick" hidden><div class="card" role="dialog" aria-label="Make an offer">
     <button class="x" type="button" aria-label="Close">&times;</button>
     <p class="ttl">Make an offer</p>
-    <button class="chip hot" type="button"><span class="ct"><span class="badge">GLOBAL PLATFORM</span><br>I'll buy refillcbd.com for<br>$300,000 <span class="btc" data-usd="300000"></span><br>w/ domain, logo &amp; global platform<br>web &amp; app development.</span><img class="bt" src="bottle.svg?v=7" alt="" width="45" height="90"></button>
-    <button class="chip" type="button"><span class="ct">I'll buy refillcbd.com for<br>$100,000 <span class="btc" data-usd="100000"></span><br>w/ the domain &amp; logo.</span><img class="bt" src="bottle.svg?v=7" alt="" width="45" height="90"></button>
-    <button class="chip" type="button"><span class="ct">I'd like to offer $____ for refillcbd.com<br>and its logo.</span><img class="bt" src="bottle.svg?v=7" alt="" width="45" height="90"></button>
+    <button class="chip hot" type="button"><span class="ct"><span class="badge">GLOBAL PLATFORM</span><br>I'll buy refillcbd.com for<br>$300,000 <span class="btc" data-usd="300000"></span><br>w/ domain, logo &amp; global platform<br>web &amp; app development.</span><img class="bt" src="bottle_real.webp?v=8" alt="" width="48" height="176"></button>
+    <button class="chip" type="button"><span class="ct">I'll buy refillcbd.com for<br>$100,000 <span class="btc" data-usd="100000"></span><br>w/ the domain &amp; logo.</span><img class="bt" src="bottle_real.webp?v=8" alt="" width="48" height="176"></button>
+    <button class="chip" type="button"><span class="ct">I'd like to offer $____ for refillcbd.com<br>and its logo.</span><img class="bt" src="bottle_real.webp?v=8" alt="" width="48" height="176"></button>
     <p class="rate" id="rate" hidden></p>
     <div class="send" id="send" hidden>
-      <p class="to">Send it to <b>info@opencbct.com</b> with</p>
+      <p class="to">Send it to <b>orders@opencbct.com</b> with</p>
       <div class="via">
-        <a id="viaGmail" target="_blank" rel="noopener">Gmail</a>
-        <a id="viaOutlook" target="_blank" rel="noopener">Outlook</a>
-        <a id="viaMail">Mail app</a>
+        <a id="viaGmail" target="_blank" rel="noopener"><span class="icw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" fill="#fff"/><path d="M2 7v10a2 2 0 0 0 2 2h3V10l5 3.8L17 10v9h3a2 2 0 0 0 2-2V7l-10 7.5z" fill="#ea4335"/><path d="M2 7l3 2.2V19H4a2 2 0 0 1-2-2z" fill="#4285f4"/><path d="M22 7l-3 2.2V19h1a2 2 0 0 0 2-2z" fill="#34a853"/><path d="M5 9.2V6.3L12 11.5l7-5.2v2.9l-7 5.3z" fill="#c5221f"/><path d="M19 6.3l1-.7A1.3 1.3 0 0 1 22 6.7V7l-3 2.2z" fill="#fbbc04"/></svg></span>Gmail</a>
+        <a id="viaOutlook" target="_blank" rel="noopener"><span class="icw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="4" width="13" height="16" rx="2" fill="#28a8ea"/><path d="M9 11l6.5 4L22 11v7a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2z" fill="#0078d4"/><rect x="2" y="6.5" width="11" height="11" rx="2" fill="#0a5bb5"/><ellipse cx="7.5" cy="12" rx="2.6" ry="3.1" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>Outlook</a>
+        <a id="viaMail"><span class="icw"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5ac8fa"/><stop offset="1" stop-color="#147efb"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" fill="url(#mg)"/><rect x="5.5" y="7.5" width="13" height="9" rx="1.3" fill="#fff"/><path d="M5.8 8l6.2 4.6L18.2 8" fill="none" stroke="#7fb7f5" stroke-width="1.1"/></svg></span>Mail app</a>
       </div>
     </div>
     <p class="to" id="pick">Pick one to send</p>
@@ -109,12 +119,14 @@
     <img class="foot-logo" src="logo.svg?v=21" alt="refillCBD" width="160" height="113">
   </div></div>
 <script>
-  var MAIL = 'info@opencbct.com', SUBJ = 'refillcbd.com domain inquiry';
+  var MAIL = 'orders@opencbct.com', SUBJ = 'refillcbd.com domain inquiry';
   document.getElementById('offer').addEventListener('click', function (e) {
     e.preventDefault();
     document.getElementById('quick').hidden = false;
   });
   var sheet = document.getElementById('quick');
+  function openFromHash() { if (location.hash === '#offer') sheet.hidden = false; }
+  openFromHash(); window.addEventListener('hashchange', openFromHash);
   sheet.addEventListener('click', function (e) { if (e.target === sheet || e.target.className === 'x') sheet.hidden = true; });
   document.querySelectorAll('.chip').forEach(function (c) {
     c.addEventListener('click', function () {
